@@ -434,6 +434,8 @@ class Task(abc.ABC):
             doc_id_docs,
             total=num_docs,
         ):
+            if doc_id != 2:
+                continue
             # sample fewshot context #TODO: need to offset doc_id by rank now!
             fewshot_ctx = self.fewshot_context(
                 doc,
