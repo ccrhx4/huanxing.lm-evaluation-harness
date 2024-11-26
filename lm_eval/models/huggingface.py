@@ -36,7 +36,7 @@ from lm_eval.models.utils import (
     pad_and_concat,
     stop_sequences_criteria,
 )
-
+import habana_frameworks.torch as ht
 
 eval_logger = utils.eval_logger
 
@@ -123,7 +123,7 @@ class HFLM(TemplateLM):
                 device_list = set(
                     ["cuda", "cpu"]
                     + [f"cuda:{i}" for i in range(gpus)]
-                    + ["mps", "mps:0"]
+                    + ["mps", "mps:0", "hpu"]
                     + [f"npu:{i}" for i in range(gpus)]
                 )
                 if device and device in device_list:
